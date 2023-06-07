@@ -9,3 +9,5 @@
 
 ## About Project
 Blog sederhana menggunakan laravel ini adalah dokumentasi belajar saya menggunakan laravel yang saya update fitur blognya sedikit- demi sedikit
+
+Bila ada kritik atau saran silahkan ditulis, saya menerima dengan senang hati sebagai bahan evaluasi belajar saya
