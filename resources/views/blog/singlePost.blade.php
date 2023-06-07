@@ -1,0 +1,76 @@
+{{-- @dd($post) --}}
+@extends('layoutsBlog.main')
+
+@section('container')
+    <h4 class="mb-4"><strong>{{ $title }}</strong></h4>
+    <h2>{{ $post->title }}</h2>
+    <p>By:
+        {{-- <a href="/user/{{ $post->user->email }}">{{ $post->user->name }},</a> --}}
+        <a href="">{{ $post->user->name }},</a>
+        <a href="/category/{{ $post->category->slug }}"> {{ $post->category->name }} </a>
+    </p>
+    {{-- <img src="https://source.unsplash.com/1200x400?{{ $post->category->slug }}" class="img-fluid mb-4"> --}}
+    @if ($post->image)
+        <div style="max-height:350px; overflow:hidden">
+            <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid mb-4">
+        </div>
+    @else
+        <img src="https://source.unsplash.com/1200x400?{{ $post->category->slug }}" class="img-fluid mb-4">
+    @endif
+    {!! $post->body !!}
+    <br>
+    <a href="/blog">Back</a>
+    <!-- Comments section-->
+    <section class="mb-5">
+        <div class="card bg-light">
+            <div class="card-body">
+                <!-- Comment form-->
+                <form class="mb-4">
+                    <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
+                </form>
+                <!-- Comment with nested comments-->
+                <div class="d-flex mb-4">
+                    <!-- Parent comment-->
+                    <div class="flex-shrink-0"><img class="rounded-circle"
+                            src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                    <div class="ms-3">
+                        <div class="fw-bold">Commenter Name</div>
+                        If you're going to lead a space frontier, it has to be government; it'll never be private
+                        enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified
+                        risks.
+                        <!-- Child comment 1-->
+                        <div class="d-flex mt-4">
+                            <div class="flex-shrink-0"><img class="rounded-circle"
+                                    src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                            <div class="ms-3">
+                                <div class="fw-bold">Commenter Name</div>
+                                And under those conditions, you cannot establish a capital-market evaluation of that
+                                enterprise. You can't get investors.
+                            </div>
+                        </div>
+                        <!-- Child comment 2-->
+                        <div class="d-flex mt-4">
+                            <div class="flex-shrink-0"><img class="rounded-circle"
+                                    src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                            <div class="ms-3">
+                                <div class="fw-bold">Commenter Name</div>
+                                When you put money directly to a problem, it makes a good headline.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single comment-->
+                <div class="d-flex">
+                    <div class="flex-shrink-0"><img class="rounded-circle"
+                            src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                    <div class="ms-3">
+                        <div class="fw-bold">Commenter Name</div>
+                        When I look at the universe and all the ways the universe wants to kill us, I find it hard to
+                        reconcile that with statements of beneficence.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{-- eend comment section --}}
+@endsection
