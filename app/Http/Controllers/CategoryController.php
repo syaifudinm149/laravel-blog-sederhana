@@ -11,7 +11,7 @@ class CategoryController extends Controller
     {
         return view('blog.category', [
             'title' => $category->name, //for title
-            'posts' => $category->posts, //binding with join post        
+            'posts' => $category->posts->load('category', 'user'), //binding with join post        
             'category_title' => $category->name //title per category
         ]);
     }
