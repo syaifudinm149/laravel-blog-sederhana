@@ -14,7 +14,7 @@ class UserController extends Controller
         // return $user->posts;
         return view('blog.user', [
             'title' => $user->name,
-            'posts' => $user->posts
+            'posts' => $user->posts->load('category', 'user')
 
         ]);
     }

@@ -10,6 +10,7 @@ class PostController extends Controller
     public function index()
     {
         // dd(request('search'));
+        // dd(Post::latest()->get());
         $post = Post::latest();
         if(request('search')){
             $post->where('title', 'like', '%' . request('search') . '%');
@@ -17,7 +18,7 @@ class PostController extends Controller
 
         return view('blog.blog', [
             'title' => 'All Posts',
-            'posts' => $post->with(['user', 'category'])->paginate(9)->withQueryString()
+            'posts' => $post->with(['user', 'category', 'comment'])->paginate(9)->withQueryString()
             // 'posts' => Post::with(['user', 'category'])->latest()->paginate(9)
             // 'posts' => Post::latest()->get()
             // 'posts' => Post::all()
@@ -25,9 +26,10 @@ class PostController extends Controller
     }
     public function show(Post $post)
     {
+        // return $post;
         return view('blog.singlePost', [
             'title' => 'Single Post',
-            'post' => $post
+            'post' => $post,
         ]);
     }
 }

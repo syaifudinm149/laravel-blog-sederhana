@@ -21,16 +21,17 @@ class RegisterController extends Controller
     //    return request()->all();
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'username' => 'required|max:255',
+            'username' => 'required|min:3|max:255',
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required|min:5|max:255'
         ]);
         $validatedData['password'] = bcrypt($validatedData['password']);
         // $validatedData['passowrd'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);
 
-        dd('registrasi berhasil');
+        // dd('registrasi berhasil');
+        return redirect('/login')->with('success', 'Registration Successfull! Please login');
         // User::create($request);
 
     }

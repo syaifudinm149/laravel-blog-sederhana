@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
         //     'slug' => 'elektronik'
         // ]);
 
-        // \App\Models\User::factory(28)->create();
+        \App\Models\User::factory(4)->create();
         \App\Models\Post::factory(10)->create();
         // \App\Models\Category::factory(2)->create();
         // \App\Models\Author::factory(1000)->create();
