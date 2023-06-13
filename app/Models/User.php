@@ -53,14 +53,3 @@ class User extends Authenticatable
     }
 
 }
-
-// class User extends Model
-// {
-//     use HasFactory;
-
-//     public function post()
-//     {
-//         return $this->hasMany(Post::class);
-//     }
-
-// }

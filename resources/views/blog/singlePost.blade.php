@@ -7,6 +7,7 @@
     <p>By:
         {{-- <a href="/user/{{ $post->user->email }}">{{ $post->user->name }},</a> --}}
         <a href="">{{ $post->user->name }},</a>
+        {{-- <a href="">{{ $post->comment }},</a> --}}
         <a href="/category/{{ $post->category->slug }}"> {{ $post->category->name }} </a>
     </p>
     {{-- <img src="https://source.unsplash.com/1200x400?{{ $post->category->slug }}" class="img-fluid mb-4"> --}}
@@ -29,7 +30,7 @@
                     <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
                 </form>
                 <!-- Comment with nested comments-->
-                <div class="d-flex mb-4">
+                {{-- <div class="d-flex mb-4">
                     <!-- Parent comment-->
                     <div class="flex-shrink-0"><img class="rounded-circle"
                             src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
@@ -58,17 +59,21 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- Single comment-->
-                <div class="d-flex">
-                    <div class="flex-shrink-0"><img class="rounded-circle"
-                            src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                    <div class="ms-3">
-                        <div class="fw-bold">Commenter Name</div>
-                        When I look at the universe and all the ways the universe wants to kill us, I find it hard to
-                        reconcile that with statements of beneficence.
+                @forelse ($post->comment as $comment)
+                    <div class="d-flex mb-4">
+                        <div class="flex-shrink-0"><img class="rounded-circle"
+                                src="https://source.unsplash.com/50x50?{{ $post->category->slug }}" alt="..." />
+                        </div>
+                        <div class="ms-3">
+                            <div class="fw-bold">{{ $comment->user->name }}</div>
+                            {{ $comment->body }}
+                        </div>
                     </div>
-                </div>
+                @empty
+                    <h6>Belum ada komentar</h6>
+                @endforelse
             </div>
         </div>
     </section>
